@@ -1,4 +1,6 @@
 \documentclass[spanish]{book}
+
+% Paquetes requeridos para funcionar.
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -10,6 +12,8 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage[spanish]{babel} 
+\usepackage{hyperref}
+% Definimos algunos tipos de 'interfaces' que nos serán útiles después
 \newtheorem{alg}{Algoritmo}
 \newtheorem{mydef}{Definición}
 \newtheorem{nota}{Notación}
@@ -17,8 +21,22 @@
 \newtheorem{obsv}{Observación}
 \newtheorem{teorema}{Teorema}
 \newtheorem{proposi}{Proposición}
+
+% Definimos el título y la licencia.
 \title{Códigos y criptografía}
 \author{José Carlos García\\ \includegraphics[width=0.15\textwidth]{licencia.png}}
+
+% Cargamos un diseño más bonito para los enlaces.
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+% Indexamos las definiciones.
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -27,22 +45,24 @@
 \chapter{Introducción}
 \section{Cuerpos finitos}
 
-\begin{mydef}
+\begin{mydef}[Cuerpo]
 	Un \textbf{cuerpo} es un anillo conmutativo con unidad en el que todo elemento distinto de 0 tiene inverso.
 \end{mydef}
 
 \begin{ejem}
 	$(\mathbb{Z}/ n \mathbb{Z}, +, \cdot)$ es anillo conmutativo con unidad, además, si $n$ es primo entonces $(\mathbb{Z}/ n \mathbb{Z}, +, \cdot)$ es un cuerpo.
 \end{ejem} 
-La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como el resto de la suma de los elementos, para el producto de forma análoga. \\
+La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como el resto de la suma de los elementos, para el producto de forma análoga.
 \begin{teorema}
 	Si un $K$ es finito, entonces $card(K)=p^r$ con $p \in \mathbb{P}$ y $r \in \mathbb{N}$
 \end{teorema}
+
 \begin{teorema}
 	Dado $p \in \mathbb{P}, r \in \mathbb{N}$ entonces existe un cuerpo $K$ tal que $card(K)=p^r$. 
 	Además, dos cuerpos finitos con el mismo cardinal son isomorfos.
 \end{teorema}
-\begin{mydef}
+
+\begin{mydef}[Cuerpo finito de $q$ elementos]
 	Si $q=p^r$ denotamos por $\mathbb{F}_q$ el cuerpo finito de $q$ elementos.
 \end{mydef}
 
@@ -59,7 +79,7 @@ La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como 
 	$card(\mathbb{F}_2[x] / <x^2+x+1>)=4$ de la observación anterior.
 \end{ejem}
 
-\begin{alg}
+\begin{alg}[Algoritmo de Euclides]
 	Se define el \textbf{algoritmo de Euclides} para calcular\textbf{máximo común divisor}, de forma que sean $a, b \in \mathbb{N}$, con $a \geq b$ hacemos:
 	\begin{eqnarray}
 		a=c_1 b + r_1 \nonumber \\
@@ -79,6 +99,7 @@ La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como 
 	De este modo, podemos obtener $r_s$ como continuación de $a, b$, de modo: \\
 	$mcd(a, b)=r_s=\lambda a + \mu b$
 \end{alg}
+
 \begin{obsv}
 	$\lambda, \mu$ se obtienen de modo efectivo a partir de las divisiones anteriores.
 \end{obsv}
@@ -104,19 +125,25 @@ La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como 
 	\end{equation*}
 	El inverso de $20$ en $\mathbb{F}_{139}$ es $7$
 \end{obsv}
+
+
 % Capitulo 1.
 \chapter{Códigos autocorrectores}
 \section{Parámetros de un código}
-\begin{mydef}
+
+\begin{mydef}[Alfabeto finito]
 	Decimos que $\mathcal{A}$ es un \textbf{alfabeto finito} si $\mathcal{A}$ es conjunto finito de $q$ símbolos.
 \end{mydef}
-\begin{mydef}
+
+\begin{mydef}[Código]
 	Decimos que $\mathcal{C}$ es un \textbf{código} si $\mathcal{C} \subset \mathcal{A}^n$, $\mathcal{C} \neq \emptyset$
 \end{mydef}
-\begin{mydef}
+
+\begin{mydef}[Palabra]
 	Decimos que $x$ es una \textbf{palabra} si $x \in \mathcal{A}$.
 \end{mydef}
-\begin{mydef}
+
+\begin{mydef}[Palabra-código]
 	Decimos que $c$ es una \textbf{palabra-código} si $c \in \mathcal{C}$.
 \end{mydef}
 
@@ -126,7 +153,7 @@ La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como 
 	$\mathcal{C}_2=\{( 0 0 0 ), (1 1 1)\} \subset \mathbb{F}_2^3$ código.
 \end{ejem}
 
-\begin{mydef}
+\begin{mydef}[Parámetros de un código]
 	Los \textbf{parámetros de un código} son: 
 	\begin{itemize}
 		\item \textbf{Longitud}: $n$.
@@ -150,9 +177,10 @@ La suma y el producto de $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$ se define como 
 	Si $d(\mathcal{C})=2d(\mathcal{C})+1$, dos bolas cualesquiera $B(c_1, d(\mathcal{C}))$, $B(c_2, d(\mathcal{C}))$, $c_1 \neq c_2 \in \mathcal{C}$ son disjuntos.
 \end{obsv}
 
-\begin{mydef}
+\begin{mydef}[Código perfecto]
 	Un \textbf{código perfecto} es un código con $d(\mathcal{C})=2d(\mathcal{C})+1$ y tal que $\{B(c, d(\mathcal{C}): c \in \mathcal{C})\}=\mathcal{A}^n$
 \end{mydef}
+
 El \textbf{Ejemplo 4} corresponde a un código perfecto.
 
 \begin{nota}
@@ -204,13 +232,17 @@ El \textbf{Ejemplo 4} corresponde a un código perfecto.
 \end{ejem}
 
 \section{Códigos lineales}
-\begin{mydef}
+
+\begin{mydef}[Código lineal]
 	Un \textbf{código lineal} $\mathcal{C} \subset \mathbb{F}_q^n$ donde $\mathcal{C}$ es un subespacio vectorial de $\mathbb{F}_q^n$
 \end{mydef}
+
 Gracias a que es una estructura lineal, el código podemos simplificarlo teniendo en cuenta la base del subespacio vectorial.
-\begin{mydef}
+
+\begin{mydef}[Peso de $x$]
 	Sea $x=(x_1, x_2, ..., x_n) \in \mathbb{F}_q^n$. El \textbf{peso} de $x$ es $w(x)=\#\{i : x_i \neq 0\}$
 \end{mydef}
+
 \begin{nota}
 	$\mathcal{C} \subset \mathbb{F}_q^n$. Se define $W(\mathcal{C})=\min \{w(x) : x \in \mathcal{C} / \{0\}\}$
 \end{nota}
@@ -231,7 +263,7 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 	Si $\mathcal{C} \subset \mathbb{F}_q^n$ lineal, $dim _{\mathbb{F}_1} \mathcal{C}=k$ decimos que $\mathcal{C}$ es un $[n, k]-código$.
 \end{nota}
 
-\begin{mydef}
+\begin{mydef}[Matriz generadora]
 	\textbf{Matriz generadora} de un $[n, k]-código$ es un matriz $G$, con dimensiones $k\times n$ cuyas filas forman una base de $\mathcal{C}$
 \end{mydef}
 
@@ -239,7 +271,7 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 	Si $\mathcal{C}=\{(000), (111)\}$, la matriz generadora es $(111)$
 \end{ejem}
 
-\begin{mydef}
+\begin{mydef}[Matriz de control de paridad]
 	\textbf{Matriz de control de paridad} de un $[n, k]-código$ lineal es una matriz $H$ de orden $(n-k)\times n$ tal que: $$ \mathcal{C}=\{x \in \mathbb{F}_q^n: x H^t=0\}$$
 \end{mydef}
 
@@ -287,7 +319,7 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 \end{alg}
 
 
-\begin{mydef}
+\begin{mydef}[Sindrome de $x$]
 	Sea $H$ la matriz de control de paridad del código $\mathcal{C}$, consideramos $x \in \mathbb{F}_q^n$, se define \textbf{el síndrome} de $x$ como $x H \in \mathbb{F}_q^{n-k}$.
 \end{mydef}
 
@@ -296,7 +328,7 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 	En efecto, si $x+\mathcal{C}=x'+\mathcal{C} \Longleftrightarrow xH^t-x'H^t=0 \Longleftrightarrow xH^t=x'H^t$
 \end{obsv}
 
-\begin{alg}
+\begin{alg}[Algoritmo de decodificación usando síndrome]
 	A continuación se nuestra el \textbf{algoritmo de decodificación usando síndrome}
 	\begin{enumerate}
 		\item Para cada clase $x+\mathcal{C}$ de $\mathbb{F}_q^n/\mathcal{C}$ consideramos un $e \in x+\mathcal{C}$ de peso mínimo.
@@ -316,6 +348,7 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 		\end{array} \right)
 		$$
 \end{ejem}
+
 \section{Algunos códigos buenos}
 \section{Códigos cíclicos}
 
