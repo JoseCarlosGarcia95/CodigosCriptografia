@@ -339,7 +339,7 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 
 \begin{ejem}
 	En $\mathbb{F}_2^5$ consideramos el código $\mathcal{C}$ con matriz generadora:
-		$$
+		$$G=
 		\left(
 		\begin{array}{ccccc}
 		1 & 0 & 0 & 1 & 1 \\
@@ -347,8 +347,49 @@ Gracias a que es una estructura lineal, el código podemos simplificarlo teniend
 		0 & 0 & 1 & 0 & 1
 		\end{array} \right)
 		$$
+	Para calcular $\mathbb{F}^5_2/\mathcal{C}$, ampliamos la matriz $G$ de modo que sea una base de $\mathbb{F}^5_2$, de este modo la base de $\mathbb{F}^5_2/\mathcal{C}$ sería lo que se 'amplia'. \\
+	Es fácil ver que entonces que $\{(00010)+\mathcal{C}, (00001)+\mathcal{C}\}$ es una base de $\mathbb{F}^5_2/\mathcal{C}$. \\
+	De esta definición, las distintas clases de $\mathbb{F}^5_2/\mathcal{C}$ son:
+	\begin{enumerate}
+		\item $(00000)+\mathcal{C}$
+		\item $(00010)+\mathcal{C}$
+		\item $(00001)+\mathcal{C}$
+		\item $(00011)+\mathcal{C}$
+	\end{enumerate}
+	
+	En el caso $1$, dado que el $(00000)$ está en el código, es fácil ver que el vector de error es $e=(00000)$. \\
+	Por otro lado, al sumar a $2$ ella misma, tenemos $(00000)$, por tanto, $e=(00010)$. \\
+	Para $3$ es análogo, $e=(00001)$. \\
+	Finalmente, para el último tenemos $e=(10000)$. \\ \\
+	Calculamos ahora los síndromes para cada clase; empezamos calculando una matriz de control de pariedad $H$ del código $\mathcal{C}$, transponiendo $G$, tenemos:
+		$$H=
+		\left(
+		\begin{array}{ccccc}
+		1 & 1 & 0 & 1 & 0 \\
+		1 & 0 & 1 & 0 & 1
+		\end{array} \right)
+		$$
+	Ahora, para cada clase calculamos $x H^t$.
+	\begin{enumerate}
+		\item $(0, 0)$ $\longleftrightarrow$ $e=(00000)$
+		\item $(1, 0)$ $\longleftrightarrow$ $e=(00010)$
+		\item $(0, 1)$ $\longleftrightarrow$ $e=(00001)$
+		\item $(1, 1)$ $\longleftrightarrow$ $e=(10000)$
+	\end{enumerate}
+	Se puede ver que las últimas componentes de los vectores $x$ coinciden con el valor del síndrome, \textbf{esto no es una casualidad.} \\ \\
+	Ahora tomamos cualquier palabra $x=(01101)$ calculamos su síndrome:
+	$$ xH^t=(1, 0) \longleftrightarrow e=(00010)$$
+	Entonces, $$c=x-e=(01101)-(00010)=(01111)$$
 \end{ejem}
 
+
+\subsection{Códigos de Hamming}
+Supongamos que estamos $\mathbb{F}_q^r$, y queremos un conjunto maximales de vectores de $\mathbb{F}_q^r$, con la condición de que cualesquiera dos vectores del conjunto sean linealmente independientes. \\
+En $\mathbb{F}_q^r-\{0\}$, consideramos la relación de equivalencia:
+$$(b_1, ..., b_r) \equiv (a_1, ..., a_r) \Longleftrightarrow (b_1, ..., b_r)= \lambda (a_1, ..., a_r), \lambda \in \mathbb{F}_q$$
+Cada clase de equivalencia tiene $q-1$ elemento $=(\#(\mathbb{F}_q-\{0\}))$. \\
+Ahora, $\#\{ \mathbb{F}_q - \{0\} \}=q^r-1$. \\
+Luego $$\# \mathbb{F}_q^r-\{0\}/\sim = \frac{q^r-1}{q-1}$$
 \section{Algunos códigos buenos}
 \section{Códigos cíclicos}
 
