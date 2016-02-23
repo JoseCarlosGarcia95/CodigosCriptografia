@@ -388,8 +388,77 @@ Supongamos que estamos $\mathbb{F}_q^r$, y queremos un conjunto maximales de vec
 En $\mathbb{F}_q^r-\{0\}$, consideramos la relación de equivalencia:
 $$(b_1, ..., b_r) \equiv (a_1, ..., a_r) \Longleftrightarrow (b_1, ..., b_r)= \lambda (a_1, ..., a_r), \lambda \in \mathbb{F}_q$$
 Cada clase de equivalencia tiene $q-1$ elemento $=(\#(\mathbb{F}_q-\{0\}))$. \\
-Ahora, $\#\{ \mathbb{F}_q - \{0\} \}=q^r-1$. \\
-Luego $$\# \mathbb{F}_q^r-\{0\}/\sim = \frac{q^r-1}{q-1}$$
+Ahora, $\#\{ \mathbb{F}_q^r - \{0\} \}=q^r-1$. \\
+Luego $$\# \mathbb{F}_q^r-\{0\}/\sim = \frac{q^r-1}{q-1}$$ \\
+Al espacio $\mathbb{K}^r-\{0\} / \sim$ se le llama \textbf{espacio proyectivo}. \\
+\begin{mydef}[Código de Hamming]
+	Consideremos $r \in \mathbb{N}$, $\displaystyle n=\frac{q^r-1}{q-1}$. Consideremos una matriz $H$ $r\times n$ cuyas columnas son los representantes de cada una de las clases de equivalencia de $\mathbb{F}_q^r-\{0\}/\sim$. \\
+	Denotamos por $\mathcal{H}(q, r)$ el código cuya matriz de pariedad es $H$. \\
+	A este código se le denomina \textbf{Código de Hamming asociado a $r,n$}
+\end{mydef}
+
+\begin{ejem}
+	$\mathbb{F}_3^2$, $r=2, q=3$, entonces $\displaystyle n=\frac{3^2-1}{3-1}=4$. \\
+	Además,
+		$$H=
+		\left(
+		\begin{array}{cccc}
+		1 & 0 & 1 & 1 \\
+		0 & 1 & 1 & 2
+		\end{array} \right)
+		$$
+	La matriz de paridad de $\mathcal{H}(3,2)$, entonces 
+	$$\mathcal{H}(3, 2)=\{(x_1, x_2, x_3, x_4) \in \mathbb{F}_3^4 : (x_1, x_2, x_3, x_4) \cdot H^t=0 \}=$$
+	$$= \{(x_1, x_2, x_3, x_4) \cdot \left(
+	\begin{array}{cc}
+	1 & 0 \\
+	0 & 1 \\
+	1 & 1 \\
+	1 & 2
+	\end{array} \right)=(0,0) \}=
+	$$
+	$$=\{x_1+x_3+x_4=0, x_2+x_3-x_4=0\}=$$
+	$$=\{(-\lambda \mu, - \lambda + \mu, \lambda, \mu) : \lambda, \mu \in \mathbb{F}_3\}$$
+\end{ejem}
+
+\begin{obsv}[Parámetros del código $\mathcal{H}(q, r)$ ]
+	De la definición del código de Hamming, se tiene:
+	\begin{itemize}
+		\item Longitud: $\displaystyle n=\frac{q^r-1}{q-1}$
+		\item Dimensión: $n-r$ pues $rango(H)=r$, dado que $(a_1, 0, ..., 0), (0, a_2, ..., 0), (0, 0, ..., a_r)$ con $a_i \neq 0$.
+		\item Distancia mínima: 3.
+	\end{itemize}
+\end{obsv}
+
+\begin{proposi}
+	$d(\mathcal{H}(q, r))=3$
+\end{proposi}
+\begin{proof}
+	Vemos que $\mathcal{H}(q, r)$ no tiene vectores de peso 1 ni 2: \\
+	Peso 1: $(0, ..., 0, a_i, 0, ..., 0) \in \mathcal{H}(q, r)$. \\
+	Si consideramos el siguiente producto:
+	$$(0, ..., 0, a_i, 0, ..., 0) \cdot \left(
+	\begin{array}{ccc}
+		a_{11} & ... & a_{1r} \\
+		a_{21} & ... & a_{2r} \\
+		... &... & ... \\
+		... & ... & ... \\
+		a_{r1} & ... & a_{nr}
+	\end{array} \right)=(0, ..., 0)$$
+	Además, $a_i\neq 0$, entonces la fila $i$ de $H^t$ es nula. $\longrightarrow\longleftarrow$ \\
+	Peso 2: Análogo.
+\end{proof}
+
+\begin{obsv}[Vector de peso $3$ en $\mathcal{H}(q, r)$]
+	Consideremos las filas $1, 2$ de $H^t$. \\
+	Ahora sean $a=(a_1, ..., a_r), b=(b_1, ..., b_r)$, dado que $a, b$ son linealmente independientes se concluye que $a+b$ es linealmente independiente de $a$ y $b$. Es decir, alguna fila de la matriz de $H^t$ es proporcional a $a+b$, de aquí, 
+	$$ (a_1+b_1, ..., a_r+b_r)=\lambda (c_1, ..., c_r)$$. \\
+	Consideremos $(1, 1, 0,..., -\lambda, 0, ..., 0) \in \mathcal{H}(q, r)$, como tiene $3$ componentes distintas de cero, tenemos que claramente es de peso $3$.
+\end{obsv}
+
+\begin{mydef}[Código perfecto]
+	Sea $\mathcal{H}(q, r)$ en un $[\frac{q^r-1}{q-1}, \frac{q^r-1}{q-1}-r, 3]-código$ lineal. Un código con estos parámetros se dice que es un \textbf{código perfecto.}
+\end{mydef}
 \section{Algunos códigos buenos}
 \section{Códigos cíclicos}
 
