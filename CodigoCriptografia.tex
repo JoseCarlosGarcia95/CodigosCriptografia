@@ -459,7 +459,78 @@ Al espacio $\mathbb{K}^r-\{0\} / \sim$ se le llama \textbf{espacio proyectivo}. 
 \begin{mydef}[Código perfecto]
 	Sea $\mathcal{H}(q, r)$ en un $[\frac{q^r-1}{q-1}, \frac{q^r-1}{q-1}-r, 3]-código$ lineal. Un código con estos parámetros se dice que es un \textbf{código perfecto.}
 \end{mydef}
+Consideremos $\mathbb{F}_q^n$, ¿$\# B(x, e)$? $e \leq n$.
+\begin{enumerate}
+	\item Hay $n(q-1)$ palabras a distancia 1.
+	\item Hay $C(n, 2)(q-1)^2$ palabras a distancia 2.
+	\item En general, $C(n, r)(q-1)^r$
+\end{enumerate}
+De este modo, $$\# B(x, e)=\sum_{r=0}^e C(n, r)(q-1)^r$$
+
+
+\begin{proposi}
+	$\mathcal{H}(q, r)$ es perfecto.
+\end{proposi}
+\begin{proof}
+$d=3=2\cdot1+1, e=1$, de este modo:
+$$\sum_{c \in \mathcal{H}(q, r)} \# B(c, 1)=\# \mathcal{H}(q, r)(1+n(q-1))=q^{n-r}(1+n(q-1))=q^{n-r}(1+\frac{q^r-1}{q-1})=q^{n-r}(q^r)=q^n$$
+\end{proof}
+Al ser perfecto, sólo existe una palabra en el código con distancia mínima.
+\begin{ejem}
+	$\mathcal{C} \subset \mathbb{F}_2^7$ que cumpla que $\# \mathcal{C}=8$, y $d(\mathcal{C})=4$. \\
+	Para ello empezamos de:
+	$$(0000000)$$
+	$$(1111000)$$
+	$$(1011111)$$
+	$$(0110000)$$
+	¿?
+\end{ejem}
+
+\begin{ejem}
+	Sea $\mathcal{C} \subset \mathbb{F}_2^n$ código perfecto con $d(\mathcal{C})=7$.
+	Entonces $n \in \{7, 23\}$
+\end{ejem}
+
 \section{Algunos códigos buenos}
+
+\subsection{Códigos de Golay. Ternarios y binario}
+Veremos que los parámetros de los códigos de Golay son los siguientes:
+\begin{enumerate}
+	\item \textbf{Ternario}: $[11, 6, 5]-código$
+	\item \textbf{Binario}: $[23, 12, 7]-código$
+\end{enumerate}
+
+\begin{mydef}[Producto espacio vectorial]
+	Supongamos que $x, y \in \mathbb{F}_q^n$. Definimos el producto de $x=(x_1, ..., x_n), y=(y_1, ..., y_n)$ como 
+	$$ <x, y> = \sum_{i=1}^{n} x_i y_i $$
+\end{mydef}
+
+\begin{mydef}[Código dual]
+	$\mathcal{C} \subset \mathbb{F}_q^n$ código lineal. El \textbf{código dual} de $\mathcal{C}$ es:
+	$$ \mathcal{C}^\bot=\{x \in \mathbb{F}_q^n : <x, c> = 0, \forall c \in \mathcal{C} \}$$
+\end{mydef}
+
+\begin{ejem}
+	En $\mathbb{F}_2^6$ consideremos $\mathcal{C}$ con matriz generadora:
+	$$\left(
+	\begin{array}{cccccc}
+	1 & 0 & 0 & 1 & 1 & 0 \\
+	0 & 1 & 0 & 1 & 0 & 1 \\
+	0 & 0 & 1 & 0 & 1 & 1
+	\end{array} \right)
+	$$
+	$$\mathcal{C}^\bot=\{x=(x_1, x_2, x_3, x_4, x_5, x_6): x \cdot c_1=0, x \cdot c_2 = 0, x \cdot c_3 \}=\{x_1+x_4+x_5=0, x_2+x_4+x_6=0, x_3+x_5+x_6=0\},$$
+	donde $c_i$ son los elementos de la base, y $\cdot$ denota el producto espacio vectorial.
+\end{ejem}
+
+\begin{obsv}
+	Una matriz generadora del código $\mathcal{C}$ es una matriz de control de paridad  $\mathcal{C}^\bot$. \\
+	Por tanto, $\dim{\mathcal{C}^\bot}_{\mathbb{F}_q}=n-\dim{\mathcal{C}}_{\mathbb{F}_q}$
+\end{obsv}
+
+\begin{mydef}
+	Un código lineal $\mathcal{C} \subset \mathbb{F}_q^n$ es autodual si $\mathcal{C}^\bot = \mathcal{C}$
+\end{mydef}
 \section{Códigos cíclicos}
 
 % Capitulo 2.
