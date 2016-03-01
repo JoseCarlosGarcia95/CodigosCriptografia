@@ -528,9 +528,63 @@ Veremos que los parámetros de los códigos de Golay son los siguientes:
 	Por tanto, $\dim{\mathcal{C}^\bot}_{\mathbb{F}_q}=n-\dim{\mathcal{C}}_{\mathbb{F}_q}$
 \end{obsv}
 
-\begin{mydef}
+\begin{mydef}[Código autodual]
 	Un código lineal $\mathcal{C} \subset \mathbb{F}_q^n$ es autodual si $\mathcal{C}^\bot = \mathcal{C}$
 \end{mydef}
+
+
+\begin{mydef}[Código extendido]
+	$\mathcal{C} \subset \mathbb{F}_q^n$ lineal. El código extendido $\mathcal{C} \subset \mathbb{F}_q^{n+1}$ es el código:
+	$$ \hat{\mathcal{G}}=\{ (x_1, x_2, ..., x_n, x_{n+1}) : (x_1, ..., x_n) \in \mathcal{C}, x_1+x_2+...+x_n+x_{n+1}=0 \}$$
+\end{mydef}
+
+\begin{mydef}[Código de Golay Ternario]
+	Empezamos de $\mathbb{F}_3^{11}$, $k=6, d=5$. \\
+	Sea $\mathcal{G}_3$ una matriz generadora.
+	$$ \mathcal{G}_3=
+	\left(
+	\begin{array}{cccccc|ccccc}
+	1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+	0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & -1 & -1 & 1 \\
+	0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & -1 & 1  \\
+	0 & 0 & 0 & 1 & 0 & 0 & -1 & 1 & 0 & 1 & -1 \\
+	0 & 0 & 0 & 0 & 1 & 0 & -1 & -1 & 1 & 0 & 1 \\
+	0 & 0 & 0 & 0 & 0 & 1 & 1 & -1 & -1 & 1 & 0
+	\end{array}
+	\right)
+	 $$
+	 El código extendido $\hat{\mathcal{G}}_3$ tiene matriz generadora:
+	 $$ \hat{\mathcal{G}}_3=\left(
+	 \begin{array}{cccccc|ccccc|c}
+	 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 0 \\ \hline
+	 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & -1 & -1 & 1 & -1 \\
+	 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & -1 & 1 & -1 \\
+	 0 & 0 & 0 & 1 & 0 & 0 & -1 & 1 & 0 & 1 & -1 & -1 \\
+	 0 & 0 & 0 & 0 & 1 & 0 & -1 & -1 & 1 & 0 & 1 & -1 \\
+	 0 & 0 & 0 & 0 & 0 & 1 & 1 & -1 & -1 & 1 & 0 & -1
+	 \end{array}
+	 \right) $$
+	 $\hat{\mathcal{G}}_3$ es autodual, para cualquiera $c, c'$ elementos de la matriz se tiene que $<c, c'>=0$. \\
+	 Por linealidad, para cualquier elemento del código también cumple esto. Se concluye entonces que toda palabra de $\hat{\mathcal{G}}_3$ tiene peso múltiplo de 3. \\
+	 En efecto, si $x=(x_1,..., x_{12})$, entonces: $$ 0=<x, x>=x_1^2+...+x_12^2$$.
+	 Veamos que obviamente $d(\hat{\mathcal{G}}_3)=6$. Veamos que $\hat{\mathcal{G}} \neq 0$ tiene peso $\geq 6$.  \\
+	 Combinaciones de 1 vector de la base. \\
+	 Combinaciones de 2 vectores
+	 $$ \hat{\mathcal{G}}=\{ (x_1, x_2, ..., x_n, x_{n+1}) : (x_1, ..., x_n) \in \mathcal{C}, x_1+x_2+...+x_n+x_{n+1}=0 \} $$ De aquí el peso debe cumplir $4 \leq peso \leq 8$, por tanto, necesariamente $peso=6$. \\
+	 Combinaciones de tres vectores:  $peso \geq 4$ entonces $peso \geq 6$. \\
+	 Combinaciones de cuatro, cinco, seis vectores: $peso \geq 4, peso \geq 6$. \\
+	 Luego, $d(\hat{\mathcal{G}}_3)\geq 6$. Como los vectores de la matriz ampliada tiene peso 6, concluimos que  $d(\hat{\mathcal{G}}_3) =6$
+	 \\
+	 Conclusión: $d({\mathcal{G}}_3) \geq 5$, pero en la matriz $\mathcal{G}$ hay vectores de peso $5$, por tanto, $d({\mathcal{G}}_3) = 5$
+\end{mydef}
+
+\begin{proposi}
+	$\mathcal{G}_3$ es perfecto.
+\end{proposi}
+
+\begin{proof}
+	$(\# \mathcal{G}_3 ) \cdot (\# B(x, 2))=3^6(1+C(11, 1)(q-1)+C(11, 2)(q-1)^2=3^6(1+22+220)=3^6(243)=3^6 3^5$
+\end{proof}
 \section{Códigos cíclicos}
 
 % Capitulo 2.
