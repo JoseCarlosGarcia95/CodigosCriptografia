@@ -585,6 +585,104 @@ Veremos que los parámetros de los códigos de Golay son los siguientes:
 \begin{proof}
 	$(\# \mathcal{G}_3 ) \cdot (\# B(x, 2))=3^6(1+C(11, 1)(q-1)+C(11, 2)(q-1)^2=3^6(1+22+220)=3^6(243)=3^6 3^5$
 \end{proof}
+
+\begin{mydef}[Código de Golay binario]
+	Sea $n=23, k=12, d=7$, y $\mathcal{G}_2 \subset \mathbb{F}_2^{23}$. \\
+	Consideramos el código de Hamming con matriz de control de paridad:
+	$$
+	\mathcal{H}=
+	\left(
+	\begin{array}{ccccccc}
+	1 & 1 & 0 & 0 & 1 & 0 & 1 \\
+	0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+	1 & 0 & 0 & 1 & 0 & 1 & 1
+	\end{array}
+	\right)
+	$$
+	Una matriz generador de $\mathcal{G}_2$ de $\mathcal{H}$:
+	$$
+		\mathcal{G}=
+		\left(
+		\begin{array}{ccccccc}
+		1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+		0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+		0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+		0 & 1 & 1 & 1 & 0 & 0 & 1
+		\end{array}
+		\right)
+	$$
+	$$
+		\mathcal{G}^*=
+		\left(
+		\begin{array}{ccccccc}
+		0 & 0 & 0 & 1 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 1 & 1 & 1 & 0
+		\end{array}
+		\right)
+	$$
+	Consideramos $\hat{\mathcal{H}}, \hat{\mathcal{H}^*}$
+	$$
+		\hat{\mathcal{G}}=
+		\left(
+		\begin{array}{cccccccc}
+		1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \\
+		0 & 1 & 1 & 0 & 1 & 0 & 0 & 1\\
+		0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 \\
+		0 & 1 & 1 & 1 & 0 & 0 & 1 & 0
+		\end{array}
+		\right)
+	$$
+	$$
+		\hat{\mathcal{G}^*}=
+		\left(
+		\begin{array}{cccccccc}
+		0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+		0 & 0 & 1 & 0 & 1 & 1 & 0 & 1\\
+		0 & 1 & 0 & 1 & 1 & 0 & 0 & 1\\
+		1 & 0 & 0 & 1 & 1 & 1 & 0 & 0
+		\end{array}
+		\right)
+	$$
+\end{mydef}
+
+\begin{obsv}
+	Usando la misma notación que antes:
+	\begin{itemize}
+		\item $\hat{\mathcal{H}} \cap \hat{\mathcal{H}^*}=\{0, 1\}$
+		\item $\hat{\mathcal{H}}, \hat{\mathcal{H}^*}$ son autoduales.
+		\item Las palabras de $\hat{\mathcal{H}}$ y $\hat{\mathcal{H}^*}$ tienen peso múltiplo de 4.
+		\item $d(\hat{\mathcal{H}})=d(\hat{\mathcal{H}^*})=4$
+	\end{itemize}
+	 
+\end{obsv}
+Consideramos el código $\hat{\mathcal{C}} \subset \mathbb{F}_2^{24}$: 
+$$
+\hat{\mathcal{C}}=\{(a+x, b+x, a+b+x): a, b \in \hat{\mathcal{H}}, x\in \hat{\mathcal{H}^*}\}$$
+
+\begin{proposi}
+	Sean $\{a_1, a_2, a_3, a_4\}, \{b_1, b_2, b_3, b_4\}$ base de $\hat{\mathcal{H}}$ y $\{x_1, x_2, x_3, x_4\}$ base $\hat{\mathcal{H}^*}$ entonces:
+	$$ \{(a_i, 0, a_i)\}_{i=1, 2, 3, 4} \cup \{(0, b_i, b_i)\}_ {i=1,2,3,4} \cup \{(x_i, x_i, x_i)\}_{i=1,2,3,4} $$ son base de $\hat{\mathcal{C}}$
+\end{proposi}
+
+\begin{obsv}
+	Sea $D \subset \mathbb{F}_2^{23}$ entonces
+	$$\mathcal{G}_2 = D=\{(c_1, ..., c_{23}) \in \mathbb{F}_2^{23}: (c_1, .., c_{23}, c_{24}) \in \hat{\mathcal{C}} \}$$
+	$\mathcal{G}_2$ tiene dimensión 12 también.
+\end{obsv}
+
+\begin{obsv}
+	El código $\hat{\mathcal{C}}$ es autodual.
+\end{obsv}
+
+\begin{obsv}
+	Como $\hat{\mathcal{C}}$ es autodual, y tiene una base cuyos elementos tienen peso múltiplo de 4, se concluye que todos las palabras de  $\hat{\mathcal{C}}$ tienen peso múltiplo de 4.
+\end{obsv}
+
+\begin{proposi}
+	$$d(\hat{\mathcal{C}})=8$$
+\end{proposi}
 \section{Códigos cíclicos}
 
 % Capitulo 2.
