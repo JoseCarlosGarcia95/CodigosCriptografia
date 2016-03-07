@@ -683,6 +683,64 @@ $$
 \begin{proposi}
 	$$d(\hat{\mathcal{C}})=8$$
 \end{proposi}
+
+\subsection{Códigos de Hadamard}
+\begin{mydef}[Matriz de Hadamard]
+	La \textbf{matriz de Hadamard} es una matriz $\mathcal{H}$ $m \times n$ cuyas entradas son $1$ o $-1$, y tal que $$HH^t=n I_n$$
+\end{mydef}
+
+\begin{obsv}
+	De la definición, se ve:
+	\begin{enumerate}
+		\item Cualesquiera $2$ filas distintas de una matriz de Hadamard, tienen $n/2$ coordenadas iguales, y $n/2$ distintas.
+		\item \textbf{Código de Hadamard}. Consideramos una matriz $\mathcal{H}_n$ de Hadamard y los $1$ los dejamos como están y los $-1$ los sustituimos por $0$. Obtenemos $n$ palabras en $\mathbb{F}_2^n$ a partir de las filas de la matriz $\mathcal{H}_n$. \\
+		Añadimos a estas palabras $n$ palabras en $\mathbb{F}_2^n$ otras $n$ palabras que obtenemos al sumar en $\mathbb{F}_2^n$ la palabra $(1, 1, ..., 1)$ a las $n$ palabras anteriores. El \textbf{código de Hadamard} a partir de $\mathcal{H}_n$ es la unión de esas $2n$ palabras, los parámetros de este código son:
+		\begin{enumerate}
+			\item \textbf{Longitud: } $n$.
+			\item \textbf{Cardinal: } $2n$.
+			\item \textbf{Distancia mínima: } 
+		\end{enumerate}
+		
+		\item Si $\mathcal{H}_n$ es Hadamard, podemos considerar:
+		$$ \hat{\mathcal{H}}=
+		\left(
+		\begin{array}{c|c}
+		\mathcal{H}_n & \mathcal{H}_n\\ \hline
+		\mathcal{H}_n & -\mathcal{H}_n
+		\end{array}
+		\right)
+		$$
+		Observemos: 
+		$$
+		\hat{\mathcal{H}}\hat{\mathcal{H}}^t=
+		\left(
+		\begin{array}{c|c}
+		\mathcal{H}_n & \mathcal{H}_n\\ \hline
+		\mathcal{H}_n & -\mathcal{H}_n
+		\end{array}
+		\right) \cdot
+		\left(
+			\begin{array}{c|c}
+			\mathcal{H}_n^t & \mathcal{H}_n^t\\ \hline
+			\mathcal{H}_n^t & -\mathcal{H}_n^t
+			\end{array}
+			\right)=2n I_{2n}
+		$$
+	\end{enumerate}
+\end{obsv}
+
+\begin{proposi}
+	Si $n\geq 4$, entonces una matriz de Hadamard tiene orden múltiplo de $4$.
+\end{proposi}
+
+
+\begin{obsv}
+	Si $n\geq 4$ es múltiplo de $4$, ¿existe una matriz de Hadamard de orden $n$?
+\end{obsv}
+
+\begin{mydef}
+	Sea $p \in \mathbb{N}$ primo, $p>2$. Sea $b \in \mathbb{Z}$. $b \neq 0 \mod p$. Se dice que \textbf{$b$ es residuo cuadrático $\mod p$} si existe $x \in \mathbb{Z}$ tal que $b = x^2 \mod p$.
+\end{mydef}
 \section{Códigos cíclicos}
 
 % Capitulo 2.
