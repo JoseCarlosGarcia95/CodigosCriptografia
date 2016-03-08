@@ -20,6 +20,7 @@
 \newtheorem{ejem}{Ejemplo}
 \newtheorem{obsv}{Observación}
 \newtheorem{teorema}{Teorema}
+\newtheorem{coro}{Corolario}
 \newtheorem{proposi}{Proposición}
 
 % Definimos el título y la licencia.
@@ -741,6 +742,57 @@ $$
 \begin{mydef}
 	Sea $p \in \mathbb{N}$ primo, $p>2$. Sea $b \in \mathbb{Z}$. $b \neq 0 \mod p$. Se dice que \textbf{$b$ es residuo cuadrático $\mod p$} si existe $x \in \mathbb{Z}$ tal que $b = x^2 \mod p$.
 \end{mydef}
+
+\begin{obsv}
+	Si $b, c \in \mathbb{Z}$, $b \neq 0 \mod p \neq c$, $b = c \mod p$. Entonces $b$ es residuo cuadrático mód $p$ sí y sólo sí $c$ es u residuo cuadrático $\mod p$.
+\end{obsv}
+
+\begin{obsv}
+	Si $p$ es primo, y consideramos $(\mathbb{Z} / p \mathbb{Z})^*=\mathbb{Z}/p \mathbb{Z}-\{0+p\mathbb{Z}\}$ con el producto es un \textbf{grupo cíclico}.
+\end{obsv}
+
+
+\begin{proposi}
+	Sea $p>2$ primo, $g$ generador de $(\mathbb{Z} / p \mathbb{Z})^*$. Entonces: \\
+	$$\{g^{2r}: r=1,.., \frac{p-1}{2}\}$$ es el conjunto de residuos cuadráticos.
+	$$\{g^{2r+1}: r=1,.., \frac{p-1}{2}\}$$ es el conjunto de los elementos que no son residuos cuadráticos.
+\end{proposi}
+
+\begin{proof}
+	Los elementos de la forma $g^{2r}$, donde $r=1,.., \frac{p-1}{2}$ son residuos cuadráticos módulo $p$. \\
+	El cardinal de $\{g^{2r}: r=1,.., \frac{p-1}{2}\}$ es precisamente $\frac{1}{2}|(\mathbb{Z}/p \mathbb{Z}^*)|$. \\
+	Ahora si escribimos los elementos de $(\mathbb{Z} / p \mathbb{Z})^*$, vemos que a lo sumo hay $\frac{p-1}{2}$ residuos cuadráticos en $(\mathbb{Z} / p \mathbb{Z})^*$, por tanto, como ya habíamos generado $\frac{p-1}{2}$ residuos cuadráticos, nuestro conjunto contiene todos los residuos cuadráticos, por tanto, el resto de elementos del grupo no son residuos cuadráticos.
+\end{proof}
+
+\begin{obsv}
+	El producto de dos residuos cuadráticos es un residuo cuadrático. \\
+	El producto de dos 2 no residuos cuadráticos es un residuo cuadrático. \\
+	El producto de un residuo cuadrático por un no residuo cuadrático, no es un residuo cuadrático.
+\end{obsv}
+
+\begin{mydef}
+	Sea $p>2$ primo. Sea $b \in \mathbb{Z}$. Se define el símbolo de Legendre:
+	$$\left( \frac{b}{p} \right)=\left\{\begin{array}{ccc}
+	0 & si & b=0 \mod p \\
+	1 & si & b=g^{2r} \\
+	-1 & si & b \neq g^{2r}
+	\end{array}
+	\right.
+	$$
+\end{mydef}
+
+\begin{proposi}
+	$$\left(\frac{bb'}{p}\right)=\left(\frac{b}{p}\right)\left(\frac{b}{p}\right)$$
+\end{proposi}
+
+\begin{proposi}[Euler]
+	$$\left(\frac{b}{p}\right)=b^{\displaystyle \frac{p-1}{2}} \mod p$$
+\end{proposi}
+
+
+\begin{coro}
+	$-1$ es residuo cuadrático sí y sólo si $p=1 \mod 4$ si y sólo si $p\neq 3 \mod 4$.
+\end{coro}
 \section{Códigos cíclicos}
 
 % Capitulo 2.
