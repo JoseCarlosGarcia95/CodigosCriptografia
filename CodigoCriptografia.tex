@@ -22,7 +22,7 @@
 \newtheorem{teorema}{Teorema}
 \newtheorem{coro}{Corolario}
 \newtheorem{proposi}{Proposición}
-
+\newtheorem{lema}{Lema}
 % Definimos el título y la licencia.
 \title{Códigos y criptografía}
 \author{José Carlos García\\ \includegraphics[width=0.15\textwidth]{licencia.png}}
@@ -793,6 +793,41 @@ $$
 \begin{coro}
 	$-1$ es residuo cuadrático sí y sólo si $p=1 \mod 4$ si y sólo si $p\neq 3 \mod 4$.
 \end{coro}
+
+\subsection{Reed-Müller}
+\begin{proposi}
+	$m \in \mathbb{N}$, $n=2^m$, $\{ V_I \in \mathbb{F}_2^n: I \subset \{0, 1,..., m-1\}\}$ es base de $\mathbb{F}_2^n$
+\end{proposi}
+
+
+\begin{mydef}
+	Sea $m \in \mathbb{N}$, $n=2^m$. El código de Reed-Müller $\mathcal{R}(r, m)$, $0\leq r \leq m$, es el código lineal en $\mathbb{F}_2^n$ generado por $$ \{ V_I \in \mathbb{F}_2^n: \# I \leq r \} $$
+\end{mydef}
+
+\begin{obsv}
+	Los parámetros del Reed-Müller son:
+	\begin{itemize}
+		\item \textbf{Longitud: } $2^m=n$
+		\item \textbf{Dimensión: } Es la suma de todos los números combinatorios $C(m, t)$ donde $0 \leq t \leq r$ 
+		\item \textbf{Distancia mínima: } $2^{m-r}$
+	\end{itemize}
+\end{obsv}
+
+
+\begin{lema}
+	$\mathcal{C}_1 \subset \mathbb{F}_2^n$ $[n, M_1, d_1]$, $\mathcal{C}_2 \subset \mathbb{F}_2^n$ con parámetros $[n, M_2, d_2]$ se define el código $\mathcal{C} \subset \mathbb{F}_2^{2n}$
+	$$ \mathcal{C}= \{(c_1, c_1+c_2) \in \mathbb{F}^{2n}_2 : c_1 \in \mathcal{C}_1, c_2 \in \mathcal{C}_2 \}$$
+	De modo que $\mathcal{C}$ es un $[2n, M_1 M_2, \min\{2d_1, d_2\}]$
+\end{lema}
+
+\begin{lema}
+	Sea $\mathcal{C}_1=\mathcal{R}(r+1, m) \subset \mathbb{F}_2^{2^m}$, $\mathcal{C}_2=\mathcal{R}(r, m) \subset \mathbb{F}_2^{2^m}$. Sea $\mathcal{C} \subset \mathbb{F}_2^{2^{m+1}}$ construido en Lema 1, a partir de $\mathcal{C}_1$ y $\mathcal{C}_2$. Entonces $\mathcal{C}=\mathcal{R}(r+1, m+1)$
+\end{lema}
+
+
+\begin{proposi}
+	$d(\mathcal{R}(n,m))=2^{m-r}$
+\end{proposi}
 \section{Códigos cíclicos}
 
 % Capitulo 2.
